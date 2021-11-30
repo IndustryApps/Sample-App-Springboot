@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: 10a43a
+eureka:
+  instance:
+    hostname: bb82-2405-201-f00f-30c6-d869-26e6-6426-4701.ngrok.io
+    securePort: 443
+    securePortEnabled: true
+  #    preferIpAddress: true
+  #    securePortEnabled: false
+  #    homePageUrl: http://${eureka.instance.hostname}:${eureka.instance.port}
+  server:
+    url: https://servicediscovery.uat.industryapps.net
+  client:
+    serviceUrl:
+      defaultZone: ${eureka.server.url}/eureka/
+server:
+  port: 80
+
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: full
+
+spring.security.oauth2.client:
+  registration:
+    demo-app:
+      client-id: user-network-api
+      client-secret: 3bbd28ad-9cb7-4619-81dc-cb777ad066e1
+      authorization-grant-type: client_credentials
+      client-authentication-method: post
+  provider:
+    demo-app:
+      token-uri: https://auth.uat.industryapps.net/auth/realms/IndustryApps/protocol/openid-connect/token
+
+logging:
+  level:
+    root: debug
