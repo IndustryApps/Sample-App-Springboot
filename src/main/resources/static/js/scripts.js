@@ -64,6 +64,153 @@ $(function () {
             enableButton($btnGetAasList, true);
         })
     });
+
+    let $btnGetAas = $("#btn-get-aas");
+    $btnGetAas.click(function (e) {
+        e.preventDefault();
+        enableButton($btnGetAas, false);
+
+        const aasId = $("#aas-id").val();
+
+        let requestData = {aasId: aasId};
+        $("#command-area").html("<h5 class='mt-4'>Request</h5><hr/>" +
+            "<pre>GET: https://aasgateway.uat.industryapps.net/aasList/" + aasId + "</pre>")
+
+        executeRequest("/10a43a/aas/get", requestData, function (data) {
+            console.log(data);
+            enableButton($btnGetAas, true);
+            $('#json-renderer').jsonViewer(data);
+            // showAASListTable(data);
+        }, function (error) {
+            console.log(error);
+            alert(error);
+            enableButton($btnGetAas, true);
+        })
+    });
+
+    let $btnGetSubmodels = $("#btn-get-submodels");
+    $btnGetSubmodels.click(function (e) {
+        e.preventDefault();
+        enableButton($btnGetSubmodels, false);
+
+        const aasId = $("#aas-id").val();
+
+        let requestData = {aasId: aasId};
+        $("#command-area").html("<h5 class='mt-4'>Request</h5><hr/>" +
+            "<pre>GET: https://aasgateway.uat.industryapps.net/aasList/" + aasId + "/aas/submodels</pre>")
+
+        executeRequest("/10a43a/aas/submodel/list", requestData, function (data) {
+            console.log(data);
+            enableButton($btnGetSubmodels, true);
+            $('#json-renderer').jsonViewer(data);
+            // showAASListTable(data);
+        }, function (error) {
+            console.log(error);
+            alert(error);
+            enableButton($btnGetSubmodels, true);
+        })
+    });
+
+    let $btnGetSubmodel = $("#btn-get-submodel");
+    $btnGetSubmodel.click(function (e) {
+        e.preventDefault();
+        enableButton($btnGetSubmodel, false);
+
+        const aasId = $("#submodel-aas-id").val();
+        const submodelIdShort = $("#submodel-id").val();
+
+        let requestData = {aasId: aasId, submodelIdShort: submodelIdShort};
+        $("#command-area").html("<h5 class='mt-4'>Request</h5><hr/>" +
+            "<pre>GET: https://aasgateway.uat.industryapps.net/aasList/" + aasId + "/aas/submodels/" + submodelIdShort + "</pre>")
+
+        executeRequest("/10a43a/aas/submodel/get", requestData, function (data) {
+            console.log(data);
+            enableButton($btnGetSubmodel, true);
+            $('#json-renderer').jsonViewer(data);
+            // showAASListTable(data);
+        }, function (error) {
+            console.log(error);
+            alert(error);
+            enableButton($btnGetSubmodel, true);
+        })
+    });
+
+    let $btnGetSubmodelElements = $("#btn-get-submodelElements");
+    $btnGetSubmodelElements.click(function (e) {
+        e.preventDefault();
+        enableButton($btnGetSubmodelElements, false);
+
+        const aasId = $("#submodel-aas-id").val();
+        const submodelIdShort = $("#submodel-id").val();
+
+        let requestData = {aasId: aasId, submodelIdShort: submodelIdShort};
+        $("#command-area").html("<h5 class='mt-4'>Request</h5><hr/>" +
+            "<pre>GET: https://aasgateway.uat.industryapps.net/aasList/" + aasId
+            + "/aas/submodels/" + submodelIdShort + "/submodel/submodelElements</pre>")
+
+        executeRequest("/10a43a/aas/submodel/elements/list", requestData, function (data) {
+            console.log(data);
+            enableButton($btnGetSubmodelElements, true);
+            $('#json-renderer').jsonViewer(data);
+            // showAASListTable(data);
+        }, function (error) {
+            console.log(error);
+            alert(error);
+            enableButton($btnGetSubmodelElements, true);
+        })
+    });
+
+    let $btnGetSubmodelElement = $("#btn-get-submodelElement");
+    $btnGetSubmodelElement.click(function (e) {
+        e.preventDefault();
+        enableButton($btnGetSubmodelElement, false);
+
+        const aasId = $("#element-aas-id").val();
+        const submodelIdShort = $("#element-submodel-id").val();
+        const submodelElementIdShort = $("#element-id").val();
+
+        let requestData = {aasId: aasId, submodelIdShort: submodelIdShort, submodelElementIdShort: submodelElementIdShort};
+        $("#command-area").html("<h5 class='mt-4'>Request</h5><hr/>" +
+            "<pre>GET: https://aasgateway.uat.industryapps.net/aasList/" + aasId
+            + "/aas/submodels/" + submodelIdShort + "/submodel/submodelElements/" + submodelElementIdShort + "</pre>")
+
+        executeRequest("/10a43a/aas/submodel/element/get", requestData, function (data) {
+            console.log(data);
+            enableButton($btnGetSubmodelElement, true);
+            $('#json-renderer').jsonViewer(data);
+            // showAASListTable(data);
+        }, function (error) {
+            console.log(error);
+            alert(error);
+            enableButton($btnGetSubmodelElement, true);
+        })
+    });
+
+    let $btnGetSubmodelElementValue = $("#btn-get-submodelElementValue");
+    $btnGetSubmodelElementValue.click(function (e) {
+        e.preventDefault();
+        enableButton($btnGetSubmodelElementValue, false);
+
+        const aasId = $("#element-aas-id").val();
+        const submodelIdShort = $("#element-submodel-id").val();
+        const submodelElementIdShort = $("#element-id").val();
+
+        let requestData = {aasId: aasId, submodelIdShort: submodelIdShort, submodelElementIdShort: submodelElementIdShort};
+        $("#command-area").html("<h5 class='mt-4'>Request</h5><hr/>" +
+            "<pre>GET: https://aasgateway.uat.industryapps.net/aasList/" + aasId
+            + "/aas/submodels/" + submodelIdShort + "/submodel/submodelElements/" + submodelElementIdShort + "/value</pre>")
+
+        executeRequest("/10a43a/aas/submodel/element/value", requestData, function (data) {
+            console.log(data);
+            enableButton($btnGetSubmodelElementValue, true);
+            $('#json-renderer').jsonViewer(data);
+            // showAASListTable(data);
+        }, function (error) {
+            console.log(error);
+            alert(error);
+            enableButton($btnGetSubmodelElementValue, true);
+        })
+    });
 });
 
 function enableButton($button, enabled) {
