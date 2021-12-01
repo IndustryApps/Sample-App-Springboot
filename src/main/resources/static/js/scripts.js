@@ -50,7 +50,7 @@ $(function () {
         const plantCode = $("#plant-code").val();
 
         let requestData = {assetType: assetType, companyDomain: companyDomain, plantCode: plantCode};
-        $("#command-area").html("<h5 class='mt-4'>Request</h5><hr/><pre>GET: https://aasgateway.uat.industryapps.net/aasList?AssetType="
+        $("#command-area").html("<h5 class='mt-4'>AAS Gateway Request</h5><hr/><pre>GET: https://aasgateway.uat.industryapps.net/aasList?AssetType="
             + assetType + "&CompanyDomain=" + companyDomain + "&PlantCode=" + plantCode + "</pre>")
 
         executeRequest("/10a43a/aas/list", requestData, function (data) {
@@ -73,14 +73,14 @@ $(function () {
         const aasId = $("#aas-id").val();
 
         let requestData = {aasId: aasId};
-        $("#command-area").html("<h5 class='mt-4'>Request</h5><hr/>" +
+        $("#command-area").html("<h5 class='mt-4'>AAS Gateway Request</h5><hr/>" +
             "<pre>GET: https://aasgateway.uat.industryapps.net/aasList/" + aasId + "</pre>")
 
         executeRequest("/10a43a/aas/get", requestData, function (data) {
             console.log(data);
             enableButton($btnGetAas, true);
             $('#json-renderer').jsonViewer(data);
-            // showAASListTable(data);
+            showAASListTable([data]);
         }, function (error) {
             console.log(error);
             alert(error);
@@ -96,14 +96,14 @@ $(function () {
         const aasId = $("#aas-id").val();
 
         let requestData = {aasId: aasId};
-        $("#command-area").html("<h5 class='mt-4'>Request</h5><hr/>" +
+        $("#command-area").html("<h5 class='mt-4'>AAS Gateway Request</h5><hr/>" +
             "<pre>GET: https://aasgateway.uat.industryapps.net/aasList/" + aasId + "/aas/submodels</pre>")
 
         executeRequest("/10a43a/aas/submodel/list", requestData, function (data) {
             console.log(data);
             enableButton($btnGetSubmodels, true);
             $('#json-renderer').jsonViewer(data);
-            // showAASListTable(data);
+            showSubmodelListTable(data);
         }, function (error) {
             console.log(error);
             alert(error);
@@ -120,14 +120,14 @@ $(function () {
         const submodelIdShort = $("#submodel-id").val();
 
         let requestData = {aasId: aasId, submodelIdShort: submodelIdShort};
-        $("#command-area").html("<h5 class='mt-4'>Request</h5><hr/>" +
+        $("#command-area").html("<h5 class='mt-4'>AAS Gateway Request</h5><hr/>" +
             "<pre>GET: https://aasgateway.uat.industryapps.net/aasList/" + aasId + "/aas/submodels/" + submodelIdShort + "</pre>")
 
         executeRequest("/10a43a/aas/submodel/get", requestData, function (data) {
             console.log(data);
             enableButton($btnGetSubmodel, true);
             $('#json-renderer').jsonViewer(data);
-            // showAASListTable(data);
+            showSubmodelListTable([data]);
         }, function (error) {
             console.log(error);
             alert(error);
@@ -144,7 +144,7 @@ $(function () {
         const submodelIdShort = $("#submodel-id").val();
 
         let requestData = {aasId: aasId, submodelIdShort: submodelIdShort};
-        $("#command-area").html("<h5 class='mt-4'>Request</h5><hr/>" +
+        $("#command-area").html("<h5 class='mt-4'>AAS Gateway Request</h5><hr/>" +
             "<pre>GET: https://aasgateway.uat.industryapps.net/aasList/" + aasId
             + "/aas/submodels/" + submodelIdShort + "/submodel/submodelElements</pre>")
 
@@ -152,7 +152,7 @@ $(function () {
             console.log(data);
             enableButton($btnGetSubmodelElements, true);
             $('#json-renderer').jsonViewer(data);
-            // showAASListTable(data);
+            showSubmodelElementListTable(data);
         }, function (error) {
             console.log(error);
             alert(error);
@@ -169,8 +169,12 @@ $(function () {
         const submodelIdShort = $("#element-submodel-id").val();
         const submodelElementIdShort = $("#element-id").val();
 
-        let requestData = {aasId: aasId, submodelIdShort: submodelIdShort, submodelElementIdShort: submodelElementIdShort};
-        $("#command-area").html("<h5 class='mt-4'>Request</h5><hr/>" +
+        let requestData = {
+            aasId: aasId,
+            submodelIdShort: submodelIdShort,
+            submodelElementIdShort: submodelElementIdShort
+        };
+        $("#command-area").html("<h5 class='mt-4'>AAS Gateway Request</h5><hr/>" +
             "<pre>GET: https://aasgateway.uat.industryapps.net/aasList/" + aasId
             + "/aas/submodels/" + submodelIdShort + "/submodel/submodelElements/" + submodelElementIdShort + "</pre>")
 
@@ -178,7 +182,7 @@ $(function () {
             console.log(data);
             enableButton($btnGetSubmodelElement, true);
             $('#json-renderer').jsonViewer(data);
-            // showAASListTable(data);
+            showSubmodelElementListTable([data]);
         }, function (error) {
             console.log(error);
             alert(error);
@@ -195,8 +199,12 @@ $(function () {
         const submodelIdShort = $("#element-submodel-id").val();
         const submodelElementIdShort = $("#element-id").val();
 
-        let requestData = {aasId: aasId, submodelIdShort: submodelIdShort, submodelElementIdShort: submodelElementIdShort};
-        $("#command-area").html("<h5 class='mt-4'>Request</h5><hr/>" +
+        let requestData = {
+            aasId: aasId,
+            submodelIdShort: submodelIdShort,
+            submodelElementIdShort: submodelElementIdShort
+        };
+        $("#command-area").html("<h5 class='mt-4'>AAS Gateway Request</h5><hr/>" +
             "<pre>GET: https://aasgateway.uat.industryapps.net/aasList/" + aasId
             + "/aas/submodels/" + submodelIdShort + "/submodel/submodelElements/" + submodelElementIdShort + "/value</pre>")
 
@@ -247,7 +255,6 @@ function showAASListTable(data) {
 
     for (const i in data) {
         let row = data[i];
-        console.log(row);
         let idShort = row["idShort"];
         let identifier = row["identification"]["id"];
         let aasUrl = aasBaseUrl + "/aasList/" + identifier.replace("#", "%23");
@@ -261,6 +268,139 @@ function showAASListTable(data) {
             "                            title=\"" + aasUrl + "\">" + aasUrl + "</td>" +
             "<td class=\"text-truncate\" data-placement=\"top\" data-toggle=\"tooltip\" " +
             "                            title=\"" + submodelsUrl + "\">" + submodelsUrl + "</td>" +
+            "</tr>";
+        $('#table-renderer > tbody').append(rowTxt);
+    }
+
+    $('[data-toggle="tooltip"]').tooltip();
+}
+
+function showSubmodelListTable(data) {
+    const header = "<thead>" +
+        "<th>idShort</th>" +
+        "<th>identifier</th>" +
+        "<th>Description</th>" +
+        "<th>SubmodelElements</th>" +
+        "</thead>" +
+        "<tbody></tbody>";
+    $("#table-renderer").html(header);
+
+    for (const i in data) {
+        let row = data[i];
+        let idShort = row["idShort"];
+        let identifier = row["identification"]["id"];
+
+        let description = row['description'];
+        let descHtml = "<ul>";
+        if (description !== undefined) {
+            for (const j in description) {
+                let lang = description[j].language;
+                let desc = description[j].description;
+
+                descHtml += "<li>" + lang + ": " + desc + "</li>";
+            }
+        }
+        descHtml += "</ul>";
+
+        let elements = row['submodelElements'];
+        let elemHtml = "<ul>";
+        if (elements !== undefined) {
+            for (const elemId in elements) {
+                elemHtml += "<li>" + elements[elemId]["idShort"] + "</li>";
+            }
+        }
+        elemHtml += "</ul>";
+
+        let rowTxt = "<tr>" +
+            "<td class=\"text-truncate\" data-placement=\"top\" data-toggle=\"tooltip\" " +
+            "                            title=\"" + idShort + "\">" + idShort + "</td>" +
+            "<td class=\"text-truncate\" data-placement=\"top\" data-toggle=\"tooltip\" " +
+            "                            title=\"" + identifier + "\">" + identifier + "</td>" +
+            "<td>" + descHtml + "</td>" +
+            "<td>" + elemHtml + "</td>" +
+            "</tr>";
+        $('#table-renderer > tbody').append(rowTxt);
+    }
+
+    $('[data-toggle="tooltip"]').tooltip();
+}
+
+function showSubmodelElementListTable(data) {
+    const header = "<thead>" +
+        "<th>idShort</th>" +
+        "<th>semanticId</th>" +
+        "<th>modelType</th>" +
+        "<th>valueType</th>" +
+        "<th>value</th>" +
+        "<th>description</th>" +
+        "</thead>" +
+        "<tbody></tbody>";
+    $("#table-renderer").html(header);
+
+    for (const i in data) {
+        let row = data[i];
+        let idShort = row["idShort"];
+        let semanticId = row["semanticId"];
+        let semantic = "";
+        if (semanticId !== undefined) {
+            let keys = semanticId["keys"];
+            if (keys !== undefined) {
+                for (const k in keys) {
+                    semanticId = keys[k];
+                    if (semanticId["local"] === true) {
+                        semantic = "ConceptDictionary: ";
+                    } else {
+                        semantic = "EClass: ";
+                    }
+                    semantic += "<code>" + semanticId["value"] + "</code>";
+                }
+            }
+        }
+
+        let modelType = row["modelType"];
+        if (modelType !== undefined) {
+            modelType = modelType["name"];
+        }
+
+        let valueType = row["valueType"];
+        if (valueType !== undefined && valueType["dataObjectType"] !== undefined) {
+            valueType = valueType["dataObjectType"]["name"];
+        }
+
+        let value = row["value"];
+        if (value !== undefined && value instanceof Object) {
+            value = JSON.stringify(value);
+        }
+
+        let description = row['description'];
+        let descHtml = "<ul>";
+        if (description !== undefined) {
+            for (const j in description) {
+                let lang = description[j].language;
+                let desc = description[j].description;
+
+                descHtml += "<li>" + lang + ": " + desc + "</li>";
+            }
+        }
+        descHtml += "</ul>";
+
+        let elements = row['submodelElements'];
+        let elemHtml = "<ul>";
+        if (elements !== undefined) {
+            for (const elemId in elements) {
+                elemHtml += "<li>" + elemId + "</li>";
+            }
+        }
+        elemHtml += "</ul>";
+
+        let rowTxt = "<tr>" +
+            "<td class=\"text-truncate\" data-placement=\"top\" data-toggle=\"tooltip\" " +
+            "                            title=\"" + idShort + "\">" + idShort + "</td>" +
+            "<td>" + semantic + "</td>" +
+            "<td>" + modelType + "</td>" +
+            "<td>" + valueType + "</td>" +
+            "<td>" + value + "</td>" +
+            "<td>" + descHtml + "</td>" +
             "</tr>";
         $('#table-renderer > tbody').append(rowTxt);
     }
