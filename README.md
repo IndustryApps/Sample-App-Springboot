@@ -76,7 +76,7 @@ spring:
 
 You can find the AppCode in App Information page of publish section.
 
-![](https://files.uat.industryapps.net/files/documentation/images/AppCode.png)
+![](https://iappsfiles.blob.core.windows.net/files/documentation/images/AppCode.png)
 
 ### Set the application running port to 80
 
