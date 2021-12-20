@@ -11,7 +11,6 @@ public interface AASFeignClient {
     @RequestMapping(method = RequestMethod.GET, value = "/aasList")
     Object getAASList(@RequestHeader("UserToken") String userToken,
                       @RequestParam("AssetType") String assetType,
-                      @RequestParam("CompanyDomain") String companyDomain,
                       @RequestParam("PlantCode") String plantCode);
 
     @RequestMapping(method = RequestMethod.GET, value = "/aasList/{aasId}")

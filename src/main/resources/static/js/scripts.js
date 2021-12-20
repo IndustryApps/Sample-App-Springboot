@@ -6,6 +6,7 @@ let plant_selected;
 let company_code;
 let plant_list;
 let roles;
+const appCode = "10a43a";
 
 $(function () {
     const data = getPlatformContext();
@@ -46,14 +47,13 @@ $(function () {
         enableButton($btnGetAasList, false);
 
         const assetType = $("#asset-type").val();
-        const companyDomain = $("#company-domain").val();
         const plantCode = $("#plant-code").val();
 
-        let requestData = {assetType: assetType, companyDomain: companyDomain, plantCode: plantCode};
+        let requestData = {assetType: assetType, plantCode: plantCode};
         $("#command-area").html("<h5 class='mt-4'>AAS Gateway Request</h5><hr/><pre>GET: https://aasgateway.uat.industryapps.net/aasList?AssetType="
             + assetType + "&CompanyDomain=" + companyDomain + "&PlantCode=" + plantCode + "</pre>")
 
-        executeRequest("/10a43a/aas/list", requestData, function (data) {
+        executeRequest("/" + appCode + "/aas/list", requestData, function (data) {
             console.log(data);
             enableButton($btnGetAasList, true);
             $('#json-renderer').jsonViewer(data);
@@ -76,7 +76,7 @@ $(function () {
         $("#command-area").html("<h5 class='mt-4'>AAS Gateway Request</h5><hr/>" +
             "<pre>GET: https://aasgateway.uat.industryapps.net/aasList/" + aasId + "</pre>")
 
-        executeRequest("/10a43a/aas/get", requestData, function (data) {
+        executeRequest("/" + appCode + "/aas/get", requestData, function (data) {
             console.log(data);
             enableButton($btnGetAas, true);
             $('#json-renderer').jsonViewer(data);
@@ -99,7 +99,7 @@ $(function () {
         $("#command-area").html("<h5 class='mt-4'>AAS Gateway Request</h5><hr/>" +
             "<pre>GET: https://aasgateway.uat.industryapps.net/aasList/" + aasId + "/aas/submodels</pre>")
 
-        executeRequest("/10a43a/aas/submodel/list", requestData, function (data) {
+        executeRequest("/" + appCode + "/aas/submodel/list", requestData, function (data) {
             console.log(data);
             enableButton($btnGetSubmodels, true);
             $('#json-renderer').jsonViewer(data);
@@ -123,7 +123,7 @@ $(function () {
         $("#command-area").html("<h5 class='mt-4'>AAS Gateway Request</h5><hr/>" +
             "<pre>GET: https://aasgateway.uat.industryapps.net/aasList/" + aasId + "/aas/submodels/" + submodelIdShort + "</pre>")
 
-        executeRequest("/10a43a/aas/submodel/get", requestData, function (data) {
+        executeRequest("/" + appCode + "/aas/submodel/get", requestData, function (data) {
             console.log(data);
             enableButton($btnGetSubmodel, true);
             $('#json-renderer').jsonViewer(data);
@@ -148,7 +148,7 @@ $(function () {
             "<pre>GET: https://aasgateway.uat.industryapps.net/aasList/" + aasId
             + "/aas/submodels/" + submodelIdShort + "/submodel/submodelElements</pre>")
 
-        executeRequest("/10a43a/aas/submodel/elements/list", requestData, function (data) {
+        executeRequest("/" + appCode + "/aas/submodel/elements/list", requestData, function (data) {
             console.log(data);
             enableButton($btnGetSubmodelElements, true);
             $('#json-renderer').jsonViewer(data);
@@ -178,7 +178,7 @@ $(function () {
             "<pre>GET: https://aasgateway.uat.industryapps.net/aasList/" + aasId
             + "/aas/submodels/" + submodelIdShort + "/submodel/submodelElements/" + submodelElementIdShort + "</pre>")
 
-        executeRequest("/10a43a/aas/submodel/element/get", requestData, function (data) {
+        executeRequest("/" + appCode + "/aas/submodel/element/get", requestData, function (data) {
             console.log(data);
             enableButton($btnGetSubmodelElement, true);
             $('#json-renderer').jsonViewer(data);
@@ -208,7 +208,7 @@ $(function () {
             "<pre>GET: https://aasgateway.uat.industryapps.net/aasList/" + aasId
             + "/aas/submodels/" + submodelIdShort + "/submodel/submodelElements/" + submodelElementIdShort + "/value</pre>")
 
-        executeRequest("/10a43a/aas/submodel/element/value", requestData, function (data) {
+        executeRequest("/" + appCode + "/aas/submodel/element/value", requestData, function (data) {
             console.log(data);
             enableButton($btnGetSubmodelElementValue, true);
             $('#json-renderer').jsonViewer(data);

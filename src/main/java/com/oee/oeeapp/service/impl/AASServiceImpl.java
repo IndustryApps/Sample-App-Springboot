@@ -21,8 +21,7 @@ public class AASServiceImpl implements AASService {
 
     @Override
     public Object getAASList(String userToken, AssetListRequest request) {
-        return feignClient.getAASList(userToken, request.getAssetType(),
-                request.getCompanyDomain(), request.getPlantCode());
+        return feignClient.getAASList(userToken, request.getAssetType(), request.getPlantCode());
     }
 
     @Override

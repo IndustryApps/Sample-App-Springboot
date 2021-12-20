@@ -10,7 +10,7 @@ eureka:
     ###################
     # If hosting the app as public use below properties
     ###################
-    hostname: bb82-2405-201-f00f-30c6-d869-26e6-6426-4701.ngrok.io # app's public domain name
+    hostname: b1af-2401-4900-4c60-a008-3594-769e-8989-e4cb.ngrok.io # app's public domain name
     securePort: 443
     securePortEnabled: true
     ###################
